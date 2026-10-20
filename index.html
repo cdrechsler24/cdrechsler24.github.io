@@ -1,9 +1,375 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My NGO</title>
-  </head>
-  <body>
-    <h1>Welcome to my NGO</h1>
-  </body>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lernwelt – Bildung für alle</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #1a1a2e;
+      background: #f9f9f9;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2e7d32;
+    }
+
+    .logo span {
+      color: #1a1a2e;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #2e7d32;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      color: white;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-white {
+      background: white;
+      color: #2e7d32;
+    }
+
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+      margin-left: 1rem;
+    }
+
+    /* MISSION */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a2e;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* STATS */
+    .stats-section {
+      background: #2e7d32;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat h2 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    .stat p {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-top: 0.3rem;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: #f0f4f0;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-section p {
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.9rem 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #2e7d32;
+    }
+
+    textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    .btn-green {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a1a2e;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      nav ul { display: none; }
+      .btn-outline { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Lern<span>welt</span></div>
+    <ul>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#program">Programme</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Bildung verändert<br>die Welt.</h1>
+    <p>Wir setzen uns für gleichberechtigten Zugang zu Bildung ein – für jedes Kind, überall in Deutschland.</p>
+    <a href="#contact" class="btn btn-white">Jetzt mitmachen</a>
+    <a href="#mission" class="btn btn-outline">Mehr erfahren</a>
+  </section>
+
+  <!-- MISSION -->
+  <div id="mission" class="section">
+    <h2 class="section-title">Unsere Mission</h2>
+    <p class="section-subtitle">Was uns antreibt und wie wir es umsetzen</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Lernförderung</h3>
+        <p>Wir bieten kostenlose Nachhilfe und Lernmaterialien für Kinder aus einkommensschwachen Familien.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Mentoring</h3>
+        <p>Erfahrene Ehrenamtliche begleiten Jugendliche auf ihrem Weg durch Schule und Ausbildung.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌍</div>
+        <h3>Chancengleichheit</h3>
+        <p>Herkunft sollte keine Rolle spielen. Wir kämpfen für ein gerechtes Bildungssystem für alle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat">
+        <h2>500+</h2>
+        <p>Kinder unterstützt</p>
+      </div>
+      <div class="stat">
+        <h2>80</h2>
+        <p>Ehrenamtliche</p>
+      </div>
+      <div class="stat">
+        <h2>12</h2>
+        <p>Städte in Deutschland</p>
+      </div>
+      <div class="stat">
+        <h2>5</h2>
+        <p>Jahre Erfahrung</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <div id="program" class="section">
+    <h2 class="section-title">Unsere Programme</h2>
+    <p class="section-subtitle">Konkrete Hilfe, die ankommt</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">✏️</div>
+        <h3>Nachhilfe vor Ort</h3>
+        <p>Wöchentliche Lerngruppen in lokalen Gemeinschaftszentren – kostenlos für alle Teilnehmenden.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Digitales Lernen</h3>
+        <p>Online-Kurse und Tablets für Kinder ohne Zugang zu digitaler Bildung.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👨‍👩‍👧</div>
+        <h3>Elternbegleitung</h3>
+        <p>Wir unterstützen auch Eltern dabei, ihre Kinder beim Lernen zu begleiten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <h2>Kontakt aufnehmen</h2>
+    <p>Interesse zu spenden, mitzumachen oder mehr zu erfahren? Schreib uns!</p>
+    <form>
+      <input type="text" placeholder="Dein Name" required />
+      <input type="email" placeholder="Deine E-Mail" required />
+      <textarea placeholder="Deine Nachricht"></textarea>
+      <button type="submit" class="btn btn-green">Nachricht senden</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Lernwelt e.V. · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+  </footer>
+
+</body>
 </html>
